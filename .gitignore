@@ -1,0 +1,32 @@
+# .gitignore
+
+# Python related
+__pycache__/
+.coverage
+*.pyc
+*.pyo
+*.pyd
+*.pyc/
+*.pyo/
+*.pyd/
+*.egg-info/
+*.egg-info
+*.env
+*.log
+*.env*
+.venv
+venv/
+ENV/
+env/
+pyenv/
+tox/
+build/
+dist/
+*.sqlite3
+
+# Other
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~

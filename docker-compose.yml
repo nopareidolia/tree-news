@@ -1,0 +1,7 @@
+version: '1'
+services:
+  tree-news:
+    image: nopareidolia/tree-news:latest
+    restart: unless-stopped
+    environment:
+      - WEBHOOK_URL=https://discord.com/api/webhooks/.../...
