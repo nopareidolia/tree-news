@@ -38,7 +38,7 @@ async def connect_to_websocket(websocket_uri: str):
                 remote_addr = websocket.remote_address
                 current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(
-                    f'Connected to {remote_addr} at {current_time}'
+                    f'Connected to websocket at {current_time}'
                 )
                 yield websocket
         except (ConnectionClosedError, ConnectionClosedOK, ConnectionClosed) as error:
