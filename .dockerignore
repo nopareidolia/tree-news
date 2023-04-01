@@ -23,3 +23,10 @@ tests/
 dist/
 build/
 *.egg-info/
+
+# Exclude version control directories and files
+.git/
+*.gitignore
+
+# Exclude workflows
+.github/
