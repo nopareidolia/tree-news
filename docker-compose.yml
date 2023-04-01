@@ -4,4 +4,4 @@ services:
     image: nopareidolia/tree-news:latest
     restart: unless-stopped
     environment:
-      - WEBHOOK_URL=https://discord.com/api/webhooks/.../...
+      - WEBHOOK_URL=<your_webhook_url>
