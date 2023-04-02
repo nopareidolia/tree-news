@@ -57,4 +57,3 @@ async def handle_news_json(
                 await handle_error(exception)
 
             update_ping_task.cancel()
-

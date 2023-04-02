@@ -36,16 +36,15 @@ async def connect_to_websocket(websocket_uri: str):
     while True:
         try:
             async with connect(websocket_uri) as websocket:
-                remote_addr = websocket.remote_address
                 current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(
                     f'✅ Connected to websocket at {current_time}'
                 )
                 yield websocket
         except (
-            ConnectionClosedError, 
-            ConnectionClosedOK, 
-            ConnectionClosed, 
+            ConnectionClosedError,
+            ConnectionClosedOK,
+            ConnectionClosed,
             IncompleteReadError
         ) as error:
             await handle_error(error)
