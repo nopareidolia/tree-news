@@ -12,6 +12,7 @@ from typing import Optional
 
 import aiohttp
 
+from .error_handler import handle_error
 from .ping_updater import latest_ping, update_ping
 from .process_news import process_news
 from .retry import exponential_backoff
@@ -42,13 +43,18 @@ async def handle_news_json(
         async for websocket in connect_to_websocket(websocket_uri):
             update_ping_task = asyncio.create_task(update_ping(websocket, latest_ping))
 
-            await exponential_backoff(
-                5,
-                process_news,
-                websocket,
-                session,
-                webhook_url,
-                latest_ping
-            )
+            try:
+                await exponential_backoff(
+                    5,
+                    process_news,
+                    websocket,
+                    session,
+                    webhook_url,
+                    latest_ping
+                )
+            except Exception as exception:
+                # Handle the error using the handle_error function
+                await handle_error(exception)
 
             update_ping_task.cancel()
+

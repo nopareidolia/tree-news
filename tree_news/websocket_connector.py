@@ -5,6 +5,7 @@ This module provides a function to establish and maintain a connection to a webs
 It handles reconnection attempts when the connection is lost or closed.
 """
 
+from asyncio.exceptions import IncompleteReadError
 from datetime import datetime
 
 from websockets.client import connect
@@ -38,8 +39,13 @@ async def connect_to_websocket(websocket_uri: str):
                 remote_addr = websocket.remote_address
                 current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 print(
-                    f'Connected to websocket at {current_time}'
+                    f'✅ Connected to websocket at {current_time}'
                 )
                 yield websocket
-        except (ConnectionClosedError, ConnectionClosedOK, ConnectionClosed) as error:
+        except (
+            ConnectionClosedError, 
+            ConnectionClosedOK, 
+            ConnectionClosed, 
+            IncompleteReadError
+        ) as error:
             await handle_error(error)
